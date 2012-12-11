@@ -7,28 +7,24 @@ Summary:        MIDI router and filter utility
 Version:        %{version} 
 Release:        %{release}
 
-Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.tar.bz2
+Source0:        http://dl.sf.net/alsamodular/%{name}-%{version}.tar.bz2
 URL:            http://alsamodular.sourceforge.net/
 License:        GPLv2
 Group:          Sound
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
-BuildRequires:  alsa-lib-devel qt4-devel
+BuildRequires:  alsa-oss-devel qt4-devel
 
 %description
 MIDI router and filter utility for the ALSA sequencer.
 
 %prep 
 %setup -q  
-%if %mdkversion >= 201000
 iconv -f=latin1 -t=utf8 man/de/%{name}.1 -o man/de/%{name}.1
 iconv -f=latin1 -t=utf8 man/fr/%{name}.1 -o man/fr/%{name}.1
-%endif
 
 %build 
-%configure 
+%configure2_5x
 %make
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 %{__mkdir} -p %{buildroot}%{_datadir}/pixmaps
@@ -49,11 +45,7 @@ Categories=X-MandrivaLinux-Multimedia-Sound;AudioVideo;
 Encoding=UTF-8
 EOF
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc README NEWS COPYING AUTHORS 
 %{_bindir}/%{name}
 %{_datadir}/%{name}
@@ -63,4 +55,3 @@ rm -rf %{buildroot}
 %{_mandir}/de/man1/*
 %{_mandir}/fr/man1/*
 %{_datadir}/applications/mandriva-%{name}.desktop
-
