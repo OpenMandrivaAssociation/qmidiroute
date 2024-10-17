@@ -8,7 +8,7 @@ Version:        %{version}
 Release:        %{release}
 
 Source0:        http://dl.sf.net/alsamodular/%{name}-%{version}.tar.bz2
-URL:            http://alsamodular.sourceforge.net/
+URL:            https://alsamodular.sourceforge.net/
 License:        GPLv2
 Group:          Sound
 BuildRequires:  alsa-oss-devel qt4-devel
